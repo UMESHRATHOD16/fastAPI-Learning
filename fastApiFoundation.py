@@ -30,3 +30,23 @@ def about():
         "region":"tg-south-2",
         "version":"1.2.2"
     }
+
+@app.get("/orders")
+def list_orders():
+    """List recent Orders"""
+    return{
+        "orders":[
+            {"id": 1, "item":"Butter Chicken", "status":"Delivered"},
+            {"id": 2, "item":"Masala Dosa", "status":"preparing"},
+            {"id": 3, "item":"Paneer Tikka", "status":"Delivered"}
+        ]
+    }
+
+@app.get("/orders/status")
+def order_status():
+    """Get order status"""
+    return{
+        "total_today":2_340_45,
+        "top_location":"Hyderabad"
+    }
+
