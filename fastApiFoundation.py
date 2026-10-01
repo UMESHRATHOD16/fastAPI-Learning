@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi import Request
 
 app = FastAPI(
     title="Swiggy order service",
@@ -50,3 +51,13 @@ def order_status():
         "top_location":"Hyderabad"
     }
 
+@app.get("/debug/request-info")
+async def get_info(request:Request):
+    """Inspect the raw request object"""
+    return {
+        "method":request.method,
+        "url":str(request.url),
+        "headers":dict(request.headers),
+        "path_params": request.path_params,
+        "query_params":dict(request.query_params),
+    }
